@@ -15,7 +15,7 @@ nextflow_process {
                 """
                 input[0] = Channel.of([
                     [ id: 'test' ],
-                    file(params.pipelines_testdata_base_path + 'intermediates/filtercounts/HG000096_HG00103_filter.Rds', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + 'intermediates/filtercounts/HG00096_HG00103_filter.Rds', checkIfExists: true),
                     file(params.pipelines_testdata_base_path + 'intermediates/bamcoveragestats/merged_bam_stats.tsv', checkIfExists: true)
                 ])
                 """
@@ -39,7 +39,7 @@ nextflow_process {
                 """
                 input[0] = Channel.of([
                     [ id: 'test' ],
-                    file(params.pipelines_testdata_base_path + 'intermediates/filtercounts/HG000096_HG00103_filter.Rds', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + 'intermediates/filtercounts/HG00096_HG00103_filter.Rds', checkIfExists: true),
                     file(params.pipelines_testdata_base_path + 'intermediates/bamcoveragestats/merged_bam_stats.tsv', checkIfExists: true)
                 ])
                 """

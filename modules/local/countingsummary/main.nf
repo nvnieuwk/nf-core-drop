@@ -11,7 +11,7 @@ process COUNTINGSUMMARY {
     tuple val(meta), path(ods), path(coverage)
 
     output:
-    tuple val(meta), path("*.html") , emit: txdb
+    tuple val(meta), path("*.html") , emit: html, optional:true // Optional in test cases because of lack of sex specific genes
     path  "versions.yml"            , emit: versions
 
     when:
