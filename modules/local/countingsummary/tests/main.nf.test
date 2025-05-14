@@ -1,0 +1,57 @@
+nextflow_process {
+
+    name "Test Process COUNTINGSUMMARY"
+    script "../main.nf"
+    process "COUNTINGSUMMARY"
+
+    tag "modules"
+    tag "modules_local"
+    tag "countingsummary"
+
+    test("homo_sapiens - ods, coverage") {
+
+        when {
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test' ],
+                    file(params.pipelines_testdata_base_path + 'intermediates/filtercounts/HG000096_HG00103_filter.Rds', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + 'intermediates/bamcoveragestats/merged_bam_stats.tsv', checkIfExists: true)
+                ])
+                """
+            }
+        }
+
+        then {
+            assertAll (
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+    test("homo_sapiens - ods, coverage - stub") {
+
+        options "-stub"
+
+        when {
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test' ],
+                    file(params.pipelines_testdata_base_path + 'intermediates/filtercounts/HG000096_HG00103_filter.Rds', checkIfExists: true),
+                    file(params.pipelines_testdata_base_path + 'intermediates/bamcoveragestats/merged_bam_stats.tsv', checkIfExists: true)
+                ])
+                """
+            }
+        }
+
+        then {
+            assertAll (
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+}
